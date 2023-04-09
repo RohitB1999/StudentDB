@@ -46,6 +46,7 @@ public class Solution {
 			break;
 			default:try {
 				System.out.println("Test code ");
+				System.out.println("i am adding in the new branch ");
 				throw new InvalidChoiceException("Invalid Choice,Kindly Enter Valid Choice");
 			}
 			catch(Exception e){
