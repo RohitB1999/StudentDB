@@ -45,6 +45,7 @@ public class Solution {
 			System.exit(0);
 			break;
 			default:try {
+				System.out.println("Test code ");
 				throw new InvalidChoiceException("Invalid Choice,Kindly Enter Valid Choice");
 			}
 			catch(Exception e){
@@ -53,6 +54,7 @@ public class Solution {
 
 			}
 		}
+		
 
 
 	}
