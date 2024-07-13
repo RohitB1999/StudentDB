@@ -172,17 +172,149 @@ public class StudentManagementSystemImpl implements StudentManagementSystem
 	@Override
 	public void sortStudent() 
 	{
-		
+		/*
+		 Map into Set -->keySet() ->keys
+		 list list=new AL(); ->Student Object ->Generics
+		 for each loop ->Traverse keys-->
+		 get the values (Student object) & add it into AL
+		 Display sortby: 1:Sort by id 2: by name 3: by Age 4: Marks
+		 switch -->collection.sort(list,new SortStudentById())
+		 traverse it using fro each loop 		
+		 */
+		if(db.size()>=2) 
+		{
+			Set<String> keys=db.keySet();
+			List<Student> list=new ArrayList<Student>();
+			for(String key: keys) 
+			{
+				list.add(db.get(key));
+			}
+			System.out.println("1:Sort by Id\n2:Sort by Age\n3:Sort by Name\n4:Sort by Marks\nEnter your choice");
+			int choice=ip.nextInt();
+			ip.nextLine();
+			switch(choice) {
+			case 1: 
+				Collections.sort(list,new SortStudentById());
+				display(list);
+				break;
+			case 2: 
+				Collections.sort(list,new SortStudentByAge());
+				display(list);
+				break;
+			case 3: 
+				Collections.sort(list,new SortStudentByName());
+				display(list);
+				break;
+			case 4: 
+				Collections.sort(list,new SortStudentByMarks());
+				display(list);
+				break;
+			default: 
+				try {
+					String message="Invalid choice, kindly enter valid choice";
+					throw new StudentNotFoundException(message);
+				}
+				catch(StudentNotFoundException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+		else {
+			try {
+				String message="No sufficient Student Record to compare";
+				throw new StudentNotFoundException(message);
+			}
+			catch(StudentNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+	}
+
+	private void display(List<Student> list) 
+	{
+		for(Student ele: list) 
+		{
+			System.out.println(ele);
+		}
+	}
+
+	@Override
+	public void getStudentWithHighestMarks() 
+	{
+		if(db.size()>=2) 
+		{
+			Set<String> keys=db.keySet();
+			List<Student> list=new ArrayList<Student>();
+			for(String key: keys) 
+			{
+				list.add(db.get(key));
+			}
+
+			Collections.sort(list,new SortStudentByMarks());
+			System.out.println(list.get(db.size()-1)); //getting student object with highest marks
+
+		}
+		else {
+			try {
+				String message="No sufficient Student Record to compare";
+				throw new StudentNotFoundException(message);
+			}
+			catch(StudentNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
 
 	}
 	@Override
 	public void getStudentWithHighestMarks() 
 	{
+		if(db.size()>=2)
+		{
+			Set<String> keys=db.keySet();
+			List<Student> list=new ArrayList<Student>();
+			for(String key: keys) 
+			{
+				list.add(db.get(key));
+			}
 
+			Collections.sort(list,new SortStudentByMarks());
+			System.out.println(list.get(db.size()-1)); //getting student object with highest marks
+
+		}
+		else {
+			try {
+				String message="No sufficient Student Record to compare";
+				throw new StudentNotFoundException(message);
+			}
+			catch(StudentNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 	@Override
 	public void getStudentWithLowestMarks() 
 	{
+		if(db.size()>=2) {
+			Set<String> keys=db.keySet();
+			List<Student> list=new ArrayList<Student>();
+			for(String key: keys) {
+				list.add(db.get(key));
+			}
+			Collections.sort(list,new SortStudentByMarks());
+			System.out.println(list.get(0));
+		}
+		else {
+			try {
+				String message="No sufficient Student Record to compare";
+				throw new StudentNotFoundException(message);
+			}
+			catch(StudentNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 
 	}
 
