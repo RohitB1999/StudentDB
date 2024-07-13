@@ -20,7 +20,7 @@ public class StudentManagementSystemImpl implements StudentManagementSystem
 		System.out.println("Enter Student Name: ");
 		String name=ip.next();								//create student instance
 		System.out.println("Enter Student Marks: ");
-		int marks=ip.nextInt();							//add student instance into db -> db -> map->put() ->key is id value is student
+		int marks=ip.nextInt();								//add student instance into db -> db -> map->put() ->key is id value is student
 
 		Student std=new Student(age,name,marks);
 		db.put(std.getId(), std);
@@ -31,7 +31,7 @@ public class StudentManagementSystemImpl implements StudentManagementSystem
 	public void displayStudent() 
 	{
 		System.out.println("Enter Student ID ");
-		String id=ip.next();    			//String id=ip.next().toUppercase();
+		String id=ip.next();    				//String id=ip.next().toUppercase();
 		id=id.toUpperCase();
 		if(db.containsKey(id))					//containsKey check whether db contains id or not
 		{
@@ -61,10 +61,10 @@ public class StudentManagementSystemImpl implements StudentManagementSystem
 			System.out.println("Student ID are as follows: ");
 			System.out.println("============================");
 			Set<String> keys=db.keySet();						//Map(db) into set -> keyset()
-			for(String key:keys)								//for each loop traverse keys
-			{													//db,get(key) -> value(Student,Object) -> toString() ->print
-				System.out.println(key+db.get(key));		//or Student value=db.get(key);	
-			}												// System.out.println(value);
+			for(String key:keys)							//for each loop traverse keys
+			{									//db,get(key) -> value(Student,Object) -> toString() ->print
+				System.out.println(key+db.get(key));				//or Student value=db.get(key);	
+			}									// System.out.println(value);
 		}
 		else
 		{
